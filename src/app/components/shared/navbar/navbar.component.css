@@ -1,0 +1,14 @@
+#navbarNav a {
+    font-size: 2rem;
+    margin-left: 20px;
+}
+
+#navbarNav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.active {
+    font-weight: bold;
+}

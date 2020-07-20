@@ -1,0 +1,45 @@
+<app-loading *ngIf="loading"></app-loading>
+
+<div class="imagen">
+    <img [src]="artista.images | noimg" alt="" class="img-circle">
+</div>
+
+<div class="portada">
+        <p class="tittle">{{artista.name}}</p>
+        <p class="descripcion"> Seguidores: {{artista.followers.total | number}}</p>
+        <hr>
+        <br>
+        <br>
+        <p class="descripcion">Top tracks</p>
+
+    <div class="row m-5">
+        <div class="col">
+            <table class="table" style="color:azure">
+                <thead>
+                    <tr>
+                        <th>Foto</th>
+                        <th>Albúm</th>
+                        <th>Canción</th>
+                        <th>Adelanto</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let tracks of topTrack">
+                        <td>
+                            <img [src]="tracks.album.images | noimg" class="img-thumb">
+                        </td>
+                        <td>{{tracks.album.name}}</td>
+                        <td>{{tracks.name}}</td>
+                        <td>
+                            <audio [src]="tracks.preview_url" controls></audio>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+        <a [href]="artista.external_urls.spotify" target="_blank">
+            <button class="button">Ver más</button> 
+        </a>
+</div>
