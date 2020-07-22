@@ -7,7 +7,7 @@ Web-App con la API de Spotify
 ```
 NPM
 NodeJS
-Postman (https://www.postman.com/)
+Postman (https://www.postman.com)
 ```
 
 # Caracteristicas
