@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { SpotifyService } from 'src/app/services/spotify.service';
 
 @Component({
@@ -14,6 +14,7 @@ export class ArtistaComponent implements OnInit {
   topTrack: any[] = [];
 
   constructor(private route: ActivatedRoute,
+    private router: Router,
     private spotify: SpotifyService) {
     this.loading = true;
     this.route.params.subscribe(params => {
@@ -36,5 +37,9 @@ export class ArtistaComponent implements OnInit {
   topTracks(id: string) {
     this.spotify.topTracks(id)
       .subscribe(topTracks => this.topTrack = topTracks)
+  }
+
+  volverBusqueda(): void {
+    this.router.navigateByUrl('search');
   }
 }

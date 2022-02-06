@@ -2,7 +2,14 @@
     <app-loading></app-loading>
 </ng-container>
 <ng-template #dataCargada>
-    <div class="imagen">
+
+    <div class="d-flex justify-content-start">
+        <button (click)="volverBusqueda()" class="btn btn-danger"> Volver a la búsqueda </button>
+    </div>
+
+    <hr>
+
+    <div class="imagen mt-5">
         <img [src]="artista.images[0].url" alt="Imagen del artista" class="img-circle">
     </div>
 
