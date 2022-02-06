@@ -6,7 +6,7 @@ import { ArtistaComponent } from "./components/artista/artista.component";
 
 export const ROUTES: Routes = [
 
-    { path: '', pathMatch: 'full', component: HomeComponent },
+    { path: '', pathMatch: 'full', redirectTo: 'home' },
     { path: 'home', component: HomeComponent },
     { path: 'search', component: SearchComponent },
     { path: 'artista/:id', component: ArtistaComponent },
