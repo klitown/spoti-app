@@ -5,10 +5,17 @@
 
 #navbarNav {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 }
 
 .active {
     font-weight: bold;
 }
+
+@media (max-width: 600px) {
+    #navbarNav {
+        flex-direction: column;
+        justify-content: center;
+    }
+  }

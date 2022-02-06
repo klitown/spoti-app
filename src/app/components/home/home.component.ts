@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { SpotifyService } from 'src/app/services/spotify.service';
+import { CLIENT_REQUEST, CLIENT_ID } from '../../../Globals';
+
+interface TOKEN {
+  access_token: string;
+  expires_in: number;
+  token_type: string,
+}
 
 @Component({
   selector: 'app-home',
@@ -10,34 +16,49 @@ import { SpotifyService } from 'src/app/services/spotify.service';
 export class HomeComponent implements OnInit {
 
 
-  public nuevasCanciones:any[] = [];
-  public loading:boolean;
+  public nuevasCanciones: any[] = [];
+  public loading: boolean;
   public error: boolean;
   public mensajeError: string;
-
-  constructor( private http: HttpClient,
-                private spotifyService: SpotifyService) { 
-
-   this.loading = true;
-
+  private tokenData = {
+    grant_type: 'client_credentials',
+    client_id: CLIENT_ID,
+    client_secret: CLIENT_REQUEST
   }
 
-  ngOnInit(): void {
+  constructor(
+    private spotifyService: SpotifyService) { }
 
+  ngOnInit(): void {
+    this.getLastReleases();
+  }
+
+  getLastReleases(): void {
+    this.loading = true;
     // Últimos 20 releases de la API Spotify desde el Servicio de Spotify
     this.spotifyService.getReleases()
-    .subscribe( (data: any) => {
-      this.nuevasCanciones = data;
-      this.loading = false;
-      
-    }, (errorService) => {
-      this.loading = false;
-      this.error = true;
-      console.log(errorService);
-      this.mensajeError = (errorService.error.error.message);
-    });
+      .subscribe((data: any) => {
+        this.nuevasCanciones = data;
+      }, (errorService) => {
+        this.error = true;
+        console.log(errorService);
+        this.mensajeError = (errorService.error.error.message);
+      }, () => this.loading = false);
+  }
 
-
+  getToken() {
+    this.loading = true;
+    this.spotifyService.getTokenSpotify(this.tokenData)
+      .subscribe((data: TOKEN) => {
+        localStorage.setItem('token', data.access_token);
+        this.spotifyService.renewToken();
+        this.error = false;
+      }, error => {
+        console.log(error);
+      }, () => {
+        this.getLastReleases();
+        this.loading = false;
+      })
   }
 
 }

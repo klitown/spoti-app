@@ -1,14 +1,19 @@
-<app-loading *ngIf="loading"></app-loading>
+<h2 class="text-center mt-3 mb-3" style="font-size: 30px; color: white;">Últimos releases</h2>
 
-<div *ngIf="error" class="alert alert-danger">
+<app-loading *ngIf="loading && !error"></app-loading>
+
+<div *ngIf="error" class="alert alert-danger mt-5">
     <h2>
         Se ha producido un error. Esta APP necesita obligatoriamente un TOKEN proveído por Spotify
     </h2>
     <p>
         {{mensajeError}}
     </p>
+    <div class="mt-5 d-flex justify-content-center align-items-center">
+        <button class="btn btn-success" type="submit" (click)="getToken()">
+            GET TOKEN
+        </button>
+    </div>
 </div>
-
-
 
 <app-tarjetas [items]="nuevasCanciones"> </app-tarjetas>
