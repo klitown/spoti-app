@@ -58,8 +58,8 @@ p .duki {
     transition: .3s ease all;
 }
 
-  .button:hover {
+.button:hover {
     font-weight: bolder;
     font-family: 'Hind Vadodara', sans-serif;
     font-size: 18px;
-  }
+}
