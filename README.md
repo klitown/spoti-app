@@ -1,6 +1,6 @@
 # SPOTI-APP
 ```
-Just for test the spotify API
+Just for test the Spotify API
 ```
 
 # Requeriments
@@ -18,8 +18,5 @@ Buscador integrado
 # Important
 ```
 Para utilizar la API de Spotify se requiere de un token personalizado:
-
-1. Generar una APP nueva desde el sitio oficial de Spotify for Developers: https://developer.spotify.com/dashboard/applications
-2. Se generan 2 keys con sus values: 'Client ID' y 'Client Secret'.
-3. Generar el token personalizado (expira cada una hora) y actualizar manualmente en el archivo "spotify.service" con el TOKEN
+* Por ahora, se genera con un botón por interfaz, elegí esta forma ya que fue un proyecto sólo de testeo y rápido
 ```
